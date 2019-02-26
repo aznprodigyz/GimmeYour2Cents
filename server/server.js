@@ -10,7 +10,15 @@ var app = express();
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
+app.use(express.static(__dirname + '/public'));
 
+app.get('/', (req, res) => {
+  // res.send('<h1>Hello Express!</h1>');
+  res.render('home.hbs', {
+    pageTitle: 'Home Page',
+    welcomeMessage: 'Welcome to my website'
+  })
+});
 app.post('/todos', (req, res) => {
   var todo = new Todo({
     text: req.body.text
