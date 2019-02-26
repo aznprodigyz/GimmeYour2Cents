@@ -5,6 +5,7 @@ var {ObjectID} = require('mongodb');
 var {mongoose} = require('./db/mongoose');
 var {Todo} = require('./models/todo');
 var {User} = require('./models/user');
+var {Options} = require('./models/options');
 
 const hbs = require('hbs');
 const fs = require('fs');
@@ -23,6 +24,14 @@ app.get('/', (req, res) => {
   res.render('home.hbs', {
 
   })
+});
+
+app.get('/options', (req, res) => {
+  Options.find().then((options) => {
+    res.send({options});
+  }, (e) => {
+    res.status(400).send(e);
+  });
 });
 
 app.post('/todos', (req, res) => {
