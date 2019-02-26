@@ -12,7 +12,7 @@ const fs = require('fs');
 
 var app = express();
 const port = process.env.PORT || 3000;
-
+//reset user name 
 hbs.registerPartials(__dirname + "/views/partials");
 //set the view engine to hbs
 app.set('view engine', 'hbs');
